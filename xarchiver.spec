@@ -1,88 +1,68 @@
-%define	name	xarchiver
 %define oname   Xarchiver
-%define	version	0.4.6
-%define pre        0
-%define	rel	    1
-%define	release	%mkrel %{rel}
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-URL:		http://xarchiver.xfce.org/
-Source0:	%{name}-%{version}.tar.bz2 
-Source1:	%name.png
+Summary:	Xarchiver, a lightweight archiving/compression tool
+Name:		xarchiver
+Version:	0.4.6
+Release:	%mkrel 2
 License:	GPL
 Group:		Archiving/Compression
-Summary:	Xarchiver, a lightweight archiving/compression tool
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+URL:		http://xarchiver.xfce.org
+Source0:	%{name}-%{version}.tar.bz2 
 BuildRequires:	pkgconfig
-BuildRequires:  gtk+2-devel
-BuildRequires:  desktop-file-utils
-BuildRequires:  ImageMagick
-Requires(post): desktop-file-utils
+BuildRequires:	gtk+2-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	imagemagick
+Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Xarchiver is a lightweight GTK2 only frontend to
 7zip, arj, rar, zip, bzip2, tar, gzip and RPM.
 
 %prep
-rm -rf $RPM_BUILD_ROOT
 %setup -q
 
 %build
-%configure
+%configure2_5x
 		
 %make
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-%makeinstall
+rm -rf %{buildroot}
+%makeinstall_std
 
-mkdir -p %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}} 
-convert %SOURCE1 -geometry 16x16 $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-install -m644 %SOURCE1 $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-convert %SOURCE1 -geometry 48x48 $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
-
-mkdir -p $RPM_BUILD_ROOT/%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT/%{_menudir}/%{name}
-?package(%{name}):command="%{_bindir}/%{name}" icon="xarchiver.png" \
-  needs="x11" section="System/Archiving/Compression" title="Xarchiver" \
-  longtitle="Create and manage archives" startup_notify="true" xdg="true"
-EOF
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32}/apps
+convert icons/48x48/%{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+convert icons/48x48/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
 desktop-file-install --vendor="" \
---remove-category="Application" \
---add-category="X-MandrivaLinux-System-Archiving-Compression" \
---add-category="Archiving" \
---dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+    --remove-category="Application" \
+    --add-category="X-MandrivaLinux-System-Archiving-Compression" \
+    --add-category="Archiving" \
+    --add-only-show-in="XFCE" \
+    --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-%{find_lang} --with-gnome
+%find_lang %{name} --with-gnome
 
 %clean 
-rm -rf $RPM_BUILD_ROOT 
+rm -rf %{buildroot}
 
 %post
 %{update_menus}
 %{update_desktop_database}
+%update_icon_cache hicolor
 
 %postun
 %{clean_menus}
 %{clean_desktop_database}
+%clean_icon_cache hicolor
 
-%files 
+%files -f %{name}.lang
 %defattr(-,root,root,755)
 %{_datadir}/doc/xarchiver/* 
-%_bindir/%{name}
+%{_bindir}/%{name}
 %{_datadir}/applications/xarchiver.desktop
 %{_libdir}/thunar-archive-plugin/xarchiver.tap
-%_iconsdir/%name.png
-%_liconsdir/%name.png
-%_miconsdir/%name.png 
-%_menudir/%name
-%lang(all) %{_datadir}/locale/*/LC_MESSAGES/xarchiver.*
-%{_datadir}/icons/hicolor/48x48/apps/xarchiver.png
-%exclude %{_datadir}/icons/hicolor/icon-theme.cache
+%{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/xarchiver/*.png
-
-
