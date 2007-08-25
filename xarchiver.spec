@@ -3,15 +3,16 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.4.6
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
 Source0:	%{name}-%{version}.tar.bz2 
+Patch0:		%{name}-0.4.6-fix-compilation.patch
 BuildRequires:	pkgconfig
 BuildRequires:	gtk+2-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -22,7 +23,7 @@ Xarchiver is a lightweight GTK2 only frontend to
 
 %prep
 %setup -q
-
+%patch0 -p1
 %build
 %configure2_5x
 		
@@ -36,9 +37,8 @@ mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32}/apps
 convert icons/48x48/%{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 convert icons/48x48/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
-desktop-file-install --vendor="" \
+desktop-file-install \
     --remove-category="Application" \
-    --add-category="X-MandrivaLinux-System-Archiving-Compression" \
     --add-category="Archiving" \
     --add-only-show-in="XFCE" \
     --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
