@@ -14,8 +14,12 @@ BuildRequires:	pkgconfig
 BuildRequires:	gtk+2-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	imagemagick
+BuildRequires:  xfce4-dev-tools
+BuildRequires:  libxml2-devel
+BuildRequires:  gettext
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
+Requires:       arj, binutils, bzip2, cpio, gzip, htmlview, tar, unzip, zip
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
