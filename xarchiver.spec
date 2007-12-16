@@ -17,6 +17,7 @@ BuildRequires:	imagemagick
 BuildRequires:  xfce4-dev-tools
 BuildRequires:  libxml2-devel
 BuildRequires:  gettext
+BuildRequires:  intltool
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
 Requires:       arj, binutils, bzip2, cpio, gzip, htmlview, tar, unzip, zip
