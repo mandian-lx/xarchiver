@@ -21,7 +21,6 @@ BuildRequires:  intltool
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
 Requires:       arj, binutils, bzip2, cpio, gzip, htmlview, tar, unzip, zip
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Xarchiver is a lightweight GTK2 only frontend to
