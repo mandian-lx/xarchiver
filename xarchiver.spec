@@ -4,7 +4,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.4.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
@@ -20,7 +20,11 @@ BuildRequires:  gettext
 BuildRequires:  intltool
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
-Requires:       arj, binutils, bzip2, cpio, gzip, htmlview, tar, unzip, zip
+Requires: binutils, unzip, zip
+Suggests: arj
+Suggests: p7zip
+Suggests: lha
+Suggests: unrar
 
 %description
 Xarchiver is a lightweight GTK2 only frontend to
