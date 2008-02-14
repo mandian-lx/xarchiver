@@ -7,6 +7,7 @@ Version:	0.4.9
 Release:	%mkrel 2
 License:	GPL
 Group:		Archiving/Compression
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://xarchiver.xfce.org
 Source0:	%{name}-%{svnversion}svn.tar.bz2
 #Patch0:		%{name}-0.4.6-fix-compilation.patch
