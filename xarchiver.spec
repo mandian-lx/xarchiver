@@ -4,7 +4,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.4.9
-Release:	%mkrel 2
+Release:	%mkrel 4
 License:	GPL
 Group:		Archiving/Compression
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
