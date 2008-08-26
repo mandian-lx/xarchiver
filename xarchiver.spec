@@ -1,58 +1,42 @@
-%define oname   Xarchiver
-%define svnversion 20070103
+%define oname Xarchiver
+%define prel beta1
 
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
-Version:	0.4.9
-Release:	%mkrel 5
-License:	GPL
+Version:	0.5.0
+Release:	%mkrel -c %{prel} 1
+License:	GPLv2
 Group:		Archiving/Compression
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://xarchiver.xfce.org
-Source0:	%{name}-%{svnversion}svn.tar.bz2
-#Patch0:		%{name}-0.4.6-fix-compilation.patch
-BuildRequires:	pkgconfig
+Source0:	http://downloads.sourceforge.net/xarchiver/%{name}-%{version}%{prel}.tar.bz2
 BuildRequires:	gtk+2-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	imagemagick
-BuildRequires:  xfce4-dev-tools
-BuildRequires:  libxml2-devel
-BuildRequires:  gettext
-BuildRequires:  intltool
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
-Requires: binutils, unzip, zip
-Suggests: arj
-Suggests: p7zip
-Suggests: lha
-Suggests: unrar
+Requires:	binutils
+Requires:	unzip
+Requires:	zip
+Suggests:	arj
+Suggests:	p7zip
+Suggests:	lha
+Suggests:	unrar
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-Xarchiver is a lightweight GTK2 only frontend to
-7zip, arj, rar, zip, bzip2, tar, gzip and RPM.
+Xarchiver is a GTK+2 only frontend to 7z, zip, rar, tar, bzip2, gzip, arj,
+lha, rpm and deb (open and extract only).Xarchiver allows you to create,
+add, extract and delete files in the above formats. 7z, zip, rar, arj 
+password protected archives are supported.
 
 %prep
-%setup -qn xarchiver
+%setup -qn %{name}-%{version}%{prel}
 
 %build
-./autogen.sh
 %configure2_5x
-
 %make
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32}/apps
-convert icons/48x48/%{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-convert icons/48x48/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-
-desktop-file-install \
-    --remove-category="Application" \
-    --add-category="Archiving" \
-    --add-only-show-in="XFCE" \
-    --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name} --with-gnome
 
@@ -75,10 +59,10 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root,755)
-%{_datadir}/doc/xarchiver/*
 %{_bindir}/%{name}
-%{_datadir}/applications/xarchiver.desktop
+%{_docdir}/%{name}/*
+%{_datadir}/applications/*.desktop
 %{_libdir}/thunar-archive-plugin/xarchiver.tap
 %{_iconsdir}/hicolor/*/apps/*.png
-%{_datadir}/pixmaps/xarchiver/*.png
-%{_datadir}/icons/hicolor/scalable/apps/xarchiver.svg
+%{_datadir}/pixmaps/%{name}/*.png
+%{_iconsdir}/hicolor/scalable/apps/*.svg
