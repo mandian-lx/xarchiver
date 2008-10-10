@@ -1,5 +1,5 @@
 %define oname Xarchiver
-%define prel beta1
+%define prel beta2
 
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
