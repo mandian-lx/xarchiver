@@ -1,10 +1,10 @@
 %define oname Xarchiver
-%define prel beta2
+%define prel rc1
 
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.0
-Release:	%mkrel -c %{prel} 2
+Release:	%mkrel -c %{prel} 1
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
