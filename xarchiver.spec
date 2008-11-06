@@ -1,14 +1,11 @@
-%define oname Xarchiver
-%define prel rc1
-
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.0
-Release:	%mkrel -c %{prel} 1
+Release:	%mkrel 1
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
-Source0:	http://downloads.sourceforge.net/xarchiver/%{name}-%{version}%{prel}.tar.bz2
+Source0:	http://downloads.sourceforge.net/xarchiver/%{name}-%{version}.tar.bz2
 BuildRequires:	gtk+2-devel
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -28,7 +25,7 @@ add, extract and delete files in the above formats. 7z, zip, rar, arj
 password protected archives are supported.
 
 %prep
-%setup -qn %{name}-%{version}%{prel}
+%setup -q
 
 %build
 %configure2_5x
