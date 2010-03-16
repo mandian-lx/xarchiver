@@ -1,7 +1,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
@@ -38,6 +38,15 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 %find_lang %{name} --with-gnome
+
+# make the .desktop file compliant with xdg specs
+
+desktop-file-install \
+		--vendor="" \
+		--remove-key="Encoding" \
+		--remove-mime-type="multipart/x-zip" \
+		--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/xarchiver.desktop
+
 
 %clean
 rm -rf %{buildroot}
