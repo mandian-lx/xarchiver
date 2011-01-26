@@ -1,7 +1,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.2
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
