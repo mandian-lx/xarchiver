@@ -7,6 +7,7 @@ Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
 Source0:	http://downloads.sourceforge.net/xarchiver/%{name}-%{version}.tar.bz2
 Patch0:		xarchiver-0.5.2-format_not_a_string_literal_and_no_format_arguments.patch
+Patch1:		xarchiver-0.5.2-fix_7z_support.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	desktop-file-utils
 Requires(post):	desktop-file-utils
@@ -29,6 +30,7 @@ password protected archives are supported.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure2_5x
