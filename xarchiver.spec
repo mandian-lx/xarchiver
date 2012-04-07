@@ -1,7 +1,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.2
-Release:	%mkrel 10
+Release:	11
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
@@ -21,7 +21,6 @@ Suggests:	p7zip
 Suggests:	lha
 Suggests:	unrar
 Suggests:	xz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Xarchiver is a GTK+2 only frontend to 7z, zip, rar, tar, bzip2, gzip, arj,
@@ -40,10 +39,9 @@ password protected archives are supported.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
-%find_lang %{name} --with-gnome
+%find_lang %{name} --with-gnome %{name}.lang
 
 # make the .desktop file compliant with xdg specs
 
@@ -54,25 +52,7 @@ desktop-file-install \
 		--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/xarchiver.desktop
 
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%{update_desktop_database}
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%{clean_desktop_database}
-%clean_icon_cache hicolor
-%endif
-
 %files -f %{name}.lang
-%defattr(-,root,root,755)
 %{_bindir}/%{name}
 %{_docdir}/%{name}/*
 %{_datadir}/applications/*.desktop
