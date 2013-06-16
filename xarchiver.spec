@@ -1,7 +1,7 @@
 Summary:	Xarchiver, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.2
-Release:	11
+Release:	12
 License:	GPLv2
 Group:		Archiving/Compression
 URL:		http://xarchiver.xfce.org
@@ -9,7 +9,7 @@ Source0:	http://downloads.sourceforge.net/xarchiver/%{name}-%{version}.tar.bz2
 Patch0:		xarchiver-0.5.2-format_not_a_string_literal_and_no_format_arguments.patch
 Patch1:		xarchiver-0.5.2-fix_7z_support.patch
 Patch2:		xarchiver-0.5.2-add_xz_support.patch
-BuildRequires:	gtk+2-devel
+BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	desktop-file-utils
 Requires(post):	desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -78,7 +78,7 @@ desktop-file-install \
 + Revision: 642115
 - rebuild
 
-* Thu Feb 10 2011 Александр Казанцев <kazancas@mandriva.org> 0.5.2-8
+* Thu Feb 10 2011 ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ€ ÐšÐ°Ð·Ð°Ð½Ñ†ÐµÐ² <kazancas@mandriva.org> 0.5.2-8
 + Revision: 637204
 - 7zip crash gui fix
 
@@ -142,7 +142,7 @@ desktop-file-install \
   + Pixel <pixel@mandriva.com>
     - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
 
-* Thu Dec 20 2007 Götz Waschk <waschk@mandriva.org> 0.4.9-2mdv2008.1
+* Thu Dec 20 2007 GÃ¶tz Waschk <waschk@mandriva.org> 0.4.9-2mdv2008.1
 + Revision: 135444
 - fix deps
 - suggest some additional archivers
@@ -150,7 +150,7 @@ desktop-file-install \
   + Thierry Vignaud <tv@mandriva.org>
     - kill re-definition of %%buildroot on Pixel's request
 
-* Sun Dec 16 2007 Jérôme Soyer <saispo@mandriva.org> 0.4.9-1mdv2008.1
+* Sun Dec 16 2007 JÃ©rÃ´me Soyer <saispo@mandriva.org> 0.4.9-1mdv2008.1
 + Revision: 120755
 - Add BR
 - Add a lot of BR
@@ -171,7 +171,7 @@ desktop-file-install \
 - spec file clean
 
 
-* Fri Dec 15 2006 Jérôme Soyer <saispo@mandriva.org> 0.4.6-1mdv2007.0
+* Fri Dec 15 2006 JÃ©rÃ´me Soyer <saispo@mandriva.org> 0.4.6-1mdv2007.0
 + Revision: 97289
 - Add BuildRequires
 - Push Xarchiver
@@ -189,13 +189,13 @@ desktop-file-install \
 * Sat May 06 2006 Jerome Soyer <saispo@mandriva.org> 0.3.3-1mdk
 - New release 0.3.3
 
-* Thu May 04 2006 Nicolas L�cureuil <neoclust@mandriva.org> 0.3.2-2mdk
+* Thu May 04 2006 Nicolas Lécureuil <neoclust@mandriva.org> 0.3.2-2mdk
 - Fix BuildRequires
 
 * Wed May 03 2006 Jerome Soyer <saispo@mandriva.org> 0.3.2-1mdk
 - New release 0.3.2
 
-* Thu Apr 06 2006 Nicolas L�cureuil <neoclust@mandriva.org> 0.3.1-3mdk
+* Thu Apr 06 2006 Nicolas Lécureuil <neoclust@mandriva.org> 0.3.1-3mdk
 - Fix BuildRequires
 
 * Wed Apr 05 2006 Jerome Soyer <saispo@mandriva.org> 0.3.1-2mdk
