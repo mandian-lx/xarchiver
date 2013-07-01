@@ -1,4 +1,4 @@
-Summary:	Xarchiver, a lightweight archiving/compression tool
+Summary:	, a lightweight archiving/compression tool
 Name:		xarchiver
 Version:	0.5.2
 Release:	12
