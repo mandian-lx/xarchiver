@@ -56,7 +56,7 @@ desktop-file-install \
 %{_bindir}/%{name}
 %{_docdir}/%{name}/*
 %{_datadir}/applications/*.desktop
-%{_libdir}/thunar-archive-plugin/xarchiver.tap
+%{_libexecdir}/thunar-archive-plugin/xarchiver.tap
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/%{name}/*.png
 %{_iconsdir}/hicolor/scalable/apps/*.svg
