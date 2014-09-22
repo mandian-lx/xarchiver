@@ -31,7 +31,7 @@ password protected archives are supported.
 %apply_patches
 
 %build
-%configure
+%configure2_5x
 %make
 
 %install
